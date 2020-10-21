@@ -1,27 +1,21 @@
 #Author : John07-noob
 #Date   : Oct 19 2020
-abc = ['a','b','c','d','e','f','g','h','i','j',
-            'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',    #1
-        'a','b','c','d','e','f','g','h','i','j',
-            'k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',]   #2
+def caeser(string, shift):
+    cipher = ""
+    for char in string:
+        if char == " ":
+            cipher = cipher + char
+        elif char.isupper():
+            cipher = cipher + chr((ord(char) + shift - 65) % 26 + 65)
+        else:
+            cipher = cipher + chr((ord(char) + shift - 97) % 26 + 97)
+    return cipher
 
-def caesar(user, shift):
+if __name__=='__main__':
+    print("Welcome to CaesarCipher")
+    user = input("Put text here: ")
     try:
-        for i in user:
-            for lists in abc:
-                char = i
-                shift = shift
-                if char == lists: #abc
-                    found_char = abc.index(char)
-                    result = abc[found_char+shift]
-                    print(result)
-    except IndexError:
+        shift = int(input("Shift key here: "))
+        print(f"Result: {caeser(user, shift)}")
+    except ValueError:
         print("Sorry. Try again :)")
-
-print("Welcome to CaesarCipher")
-user = input("Put text here: ")
-try:
-    shift = int(input("Shift key here: "))
-    caesar(user, shift)
-except ValueError:
-    print("Sorry. Try again :)")
